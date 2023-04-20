@@ -49,4 +49,5 @@ for aLine in result:
 
 # Output
 for aLine in result2:
+    aLine = aLine.encode('utf-8', 'surrogatepass').decode('utf-8', 'ignore')
     print(aLine)
