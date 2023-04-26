@@ -27,11 +27,13 @@ node = m.parseToNode(text)
 # Extract noun unique word
 result = set()
 while node:
-    feature = node.feature
-    if feature.startswith("名詞") and ( "固有名詞" in feature or "一般" in feature ):
+    features = node.feature.split(",")
+    if "名詞" in features and ( "固有名詞" in features or "一般" in features ):
         jpWord = re.sub("[a-zA-Z0-9]+", "", node.surface)
         if jpWord:
             result.add( jpWord )
+        if features[6] and features[6]!="*":
+            result.add( features[6] )
     node = node.next
 
 # Sub extraction
